@@ -2,11 +2,16 @@ package diseño;
 
 import java.awt.EventQueue;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +28,7 @@ public class Home extends JFrame {
 	private JTextField textFieldUsuario;
 	private JTextField textFieldContrasena;
 	private final JButton btnNoContrasena = new JButton("Si");
+	private Clip clip;
 
 	/**
 	 * Launch the application.
@@ -61,6 +67,8 @@ public class Home extends JFrame {
 	        }
 
 	        public void irARegistro() {
+	        	// Detener la reproducción del audio
+	            clip.stop();
                 // Cerrar la ventana actual
                 dispose();
                 // Crear una nueva ventana de Registro
@@ -73,6 +81,10 @@ public class Home extends JFrame {
                 registro.setVisible(true);
             }
         });
+	    
+	    // Llama al método para reproducir el audio
+	    reproducirAudio("C:\\Users\\danir\\Music\\PokemonPinballOSTTitleScreen.wav");
+	
 
 	    contentPane.setLayout(null);
 	    contentPane.add(btnRegistro);
@@ -120,6 +132,8 @@ public class Home extends JFrame {
 	        }
 
 	        private void irAInicio() {
+	        	//Parar audio
+		        clip.stop();
                 // Cerrar la ventana actual
                 dispose();
                 // Crear una nueva ventana de Inicio
@@ -130,6 +144,7 @@ public class Home extends JFrame {
                 inicio.setModal(true);
                 // Mostrar la ventana de Inicio
                 inicio.setVisible(true);
+               
             }
         });
 
@@ -146,6 +161,8 @@ public class Home extends JFrame {
 	        }
 
 	        private void IrAContrasenaOlvidada() {
+	        	// Detener la reproducción del audio
+	            clip.stop();
                 // Crear una nueva ventana de ContrasenaOlvidada
                 ContrasenaOlvidada contrasenaOlvidada = new ContrasenaOlvidada();
                 // Configurar la ubicación en el centro de la pantalla
@@ -160,4 +177,26 @@ public class Home extends JFrame {
 	    btnNoContrasena.setBounds(144, 414, 52, 23);
 	    contentPane.add(btnNoContrasena);
 	}
+	//Método para reproducir audio
+	private void reproducirAudio(String rutaArchivoAudio) {
+	    try {
+	        // Obtén una instancia de Clip
+	        clip = AudioSystem.getClip();
+
+	        // Abre el archivo de audio
+	        clip.open(AudioSystem.getAudioInputStream(new File(rutaArchivoAudio)));
+
+	        // Reproduce el audio
+	        clip.start();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	// Implementa el método windowClosing para detener la reproducción del audio antes de cerrar la ventana
+    public void windowClosing(WindowEvent e) {
+        // Detener la reproducción del audio
+        clip.stop();
+    }
+	
 }

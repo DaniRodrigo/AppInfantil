@@ -1,16 +1,24 @@
 package diseño;
 
 import java.awt.BorderLayout;
-import puzzlePokemon.PuzzleGame;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
+
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -18,6 +26,7 @@ public class Inicio extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private Clip clip;
 
 	/**
 	 * Launch the application.
@@ -36,6 +45,9 @@ public class Inicio extends JDialog {
 	 * Create the dialog.
 	 */
 	public Inicio() {
+		// Llama al método para reproducir el audio
+	    reproducirAudio("C:\\Users\\danir\\Music\\Música de Pokemon Red & Blue - Camino a la Casa de Bill.wav");
+	    
 		setTitle("Inicio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
 		setBounds(100, 100, 285, 585);
@@ -56,6 +68,8 @@ public class Inicio extends JDialog {
 			}
 
 			private void IrAEligePuzzle() {
+				//Parar audio
+		        clip.stop();
 				dispose();
 				EligePuzzle eligePuzzle = new EligePuzzle();
 				eligePuzzle.setLocationRelativeTo(null);
@@ -80,6 +94,8 @@ public class Inicio extends JDialog {
 			}
 
 			private void IrARecords() {
+				//Parar audio
+		        clip.stop();
 				dispose();
 				Records records = new Records();
 				records.setLocationRelativeTo(null);
@@ -105,6 +121,8 @@ public class Inicio extends JDialog {
 			}
 
 			private void IrAHome() {
+				//Parar audio
+		        clip.stop();
 				Home home = new Home();
 					home.setLocationRelativeTo(null);
 					home .setVisible(true);
@@ -124,5 +142,27 @@ public class Inicio extends JDialog {
 		lblNewLabel_2_1.setBounds(194, 155, 174, 191);
 		contentPanel.add(lblNewLabel_2_1);
 	}
+
+	//Método para reproducir audio
+		private void reproducirAudio(String rutaArchivoAudio) {
+		    try {
+		        // Obtén una instancia de Clip
+		        clip = AudioSystem.getClip();
+
+		        // Abre el archivo de audio
+		        clip.open(AudioSystem.getAudioInputStream(new File(rutaArchivoAudio)));
+
+		        // Reproduce el audio
+		        clip.start();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		}
+
+		
+		public void windowClosing(WindowEvent e) {
+	        // Detener la reproducción del audio
+	        clip.stop();
+	    }
 
 }

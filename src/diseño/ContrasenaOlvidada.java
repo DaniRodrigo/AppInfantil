@@ -1,17 +1,23 @@
 package diseño;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -20,6 +26,7 @@ public class ContrasenaOlvidada extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
+	private Clip clip;
 
 	/**
 	 * Launch the application.
@@ -38,6 +45,9 @@ public class ContrasenaOlvidada extends JDialog {
 	 * Create the dialog.
 	 */
 	public ContrasenaOlvidada() {
+		// Llama al método para reproducir el audio
+		reproducirAudio("C:\\Users\\danir\\Music\\Pokemon-Pinball-OST-Game-Over.wav");
+
 		setTitle("Contraseña olvidada");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
 		setBounds(100, 100, 268, 423);
@@ -69,15 +79,17 @@ public class ContrasenaOlvidada extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 					IrAContrasenaEnviada();
-					
+
 				}
 
 				private void IrAContrasenaEnviada() {
+					// Detener la reproducción del audio
+					clip.stop();
 					ContrasenaEnviada contrasenaEnviada = new ContrasenaEnviada();
 					contrasenaEnviada.setLocationRelativeTo(null);
 					contrasenaEnviada.setModal(true);
 					contrasenaEnviada.setVisible(true);
-					
+
 				}
 			});
 			btnNewButton.setBounds(151, 281, 89, 23);
@@ -101,4 +113,26 @@ public class ContrasenaOlvidada extends JDialog {
 		}
 	}
 
+	// Método para reproducir audio
+	private void reproducirAudio(String rutaArchivoAudio) {
+		try {
+			// Obtén una instancia de Clip
+			clip = AudioSystem.getClip();
+
+			// Abre el archivo de audio
+			clip.open(AudioSystem.getAudioInputStream(new File(rutaArchivoAudio)));
+
+			// Reproduce el audio
+			clip.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Implementa el método windowClosing para detener la reproducción del audio
+	// antes de cerrar la ventana
+	public void windowClosing(WindowEvent e) {
+		// Detener la reproducción del audio
+		clip.stop();
+	}
 }

@@ -1,17 +1,22 @@
 package diseño;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
@@ -22,6 +27,7 @@ public class Registro extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private Clip clip;
 
 	/**
 	 * Launch the application.
@@ -40,6 +46,9 @@ public class Registro extends JDialog {
 	 * Create the dialog.
 	 */
 	public Registro() {
+		// Llama al método para reproducir el audio
+		reproducirAudio("C:\\Users\\danir\\Music\\Música de Pokemon Red & Blue - El Camino a Ciudad Verde.wav");
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
 		setTitle("Registro");
 		setBounds(100, 100, 547, 443);
@@ -48,33 +57,37 @@ public class Registro extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			 JButton btnNewButton = new JButton("Inicio");
-		        btnNewButton.addActionListener(new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                if (camposValidos()) {
-		                    irAInicio();
-		                } else {
-		                    mostrarMensajeDeError();
-		                }
-		            }
+			JButton btnNewButton = new JButton("Inicio");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (camposValidos()) {
+						irAInicio();
+					} else {
+						mostrarMensajeDeError();
+					}
+				}
 
-		            private void irAInicio() {
-	                    // Cerrar la ventana actual
-	                    dispose();
-	                    // Crear una nueva ventana de Inicio
-	                    Inicio inicio = new Inicio();
-	                    // Configurar la ubicación en el centro de la pantalla
-	                    inicio.setLocationRelativeTo(null);
-	                    // Hacer la ventana modal (bloquear la interacción con otras ventanas)
-	                    inicio.setModal(true);
-	                    // Mostrar la ventana de Inicio
-	                    inicio.setVisible(true);
-	                }
+				private void irAInicio() {
+					// Detener la reproducción del audio
+					clip.stop();
+					// Cerrar la ventana actual
+					dispose();
+					// Crear una nueva ventana de Inicio
+					Inicio inicio = new Inicio();
+					// Configurar la ubicación en el centro de la pantalla
+					inicio.setLocationRelativeTo(null);
+					// Hacer la ventana modal (bloquear la interacción con otras ventanas)
+					inicio.setModal(true);
+					// Mostrar la ventana de Inicio
+					inicio.setVisible(true);
+				}
 
-		            private void mostrarMensajeDeError() {
-		                JOptionPane.showMessageDialog(contentPanel, "Por favor, complete todos los campos antes de ir a la pantalla de inicio.", "Campos vacíos", JOptionPane.ERROR_MESSAGE);
-		            }
-		        });
+				private void mostrarMensajeDeError() {
+					JOptionPane.showMessageDialog(contentPanel,
+							"Por favor, complete todos los campos antes de ir a la pantalla de inicio.",
+							"Campos vacíos", JOptionPane.ERROR_MESSAGE);
+				}
+			});
 			btnNewButton.setBounds(143, 370, 89, 23);
 			contentPanel.add(btnNewButton);
 		}
@@ -113,7 +126,8 @@ public class Registro extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\DreamHackDallas2023_Freeplay_PokemonPuzzleLeague.png"));
+			lblNewLabel_1.setIcon(
+					new ImageIcon("C:\\Users\\danir\\Pictures\\DreamHackDallas2023_Freeplay_PokemonPuzzleLeague.png"));
 			lblNewLabel_1.setBounds(0, 0, 531, 253);
 			contentPanel.add(lblNewLabel_1);
 		}
@@ -121,24 +135,26 @@ public class Registro extends JDialog {
 			JButton btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					  // Cerrar la ventana actual
-                    dispose();
-                    // Llamar al método para ir a la ventana de inicio
-                    IrAHome();
-                }
-				
+					// Cerrar la ventana actual
+					dispose();
+					// Llamar al método para ir a la ventana de inicio
+					IrAHome();
+				}
+
 				private void IrAHome() {
-                    // Crear una nueva ventana de Home
-                    Home home = new Home();
-                    // Configurar la ubicación en el centro de la pantalla
-                    home.setLocationRelativeTo(null);
-                    // Mostrar la ventana de Home
-                    home.setVisible(true);
-                }
-            });
-            btnVolver.setBounds(263, 370, 89, 23);
-            contentPanel.add(btnVolver);
-        }
+					// Detener la reproducción del audio
+					clip.stop();
+					// Crear una nueva ventana de Home
+					Home home = new Home();
+					// Configurar la ubicación en el centro de la pantalla
+					home.setLocationRelativeTo(null);
+					// Mostrar la ventana de Home
+					home.setVisible(true);
+				}
+			});
+			btnVolver.setBounds(263, 370, 89, 23);
+			contentPanel.add(btnVolver);
+		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("");
 			lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Squirtle2.png"));
@@ -152,12 +168,33 @@ public class Registro extends JDialog {
 			contentPanel.add(lblNewLabel_3);
 		}
 	}
-	 // Método para verificar si los campos están vacíos
-    private boolean camposValidos() {
-        String usuario = textField.getText();
-        String contrasena = textField_2.getText();
-        String email = textField_1.getText();
-        return !usuario.isEmpty() && !contrasena.isEmpty() && !email.isEmpty();
-    }
 
+	// Método para verificar si los campos están vacíos
+	private boolean camposValidos() {
+		String usuario = textField.getText();
+		String contrasena = textField_2.getText();
+		String email = textField_1.getText();
+		return !usuario.isEmpty() && !contrasena.isEmpty() && !email.isEmpty();
+	}
+
+	// Método para reproducir audio
+	private void reproducirAudio(String rutaArchivoAudio) {
+		try {
+			// Obtén una instancia de Clip
+			clip = AudioSystem.getClip();
+
+			// Abre el archivo de audio
+			clip.open(AudioSystem.getAudioInputStream(new File(rutaArchivoAudio)));
+
+			// Reproduce el audio
+			clip.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void windowClosing(WindowEvent e) {
+		// Detener la reproducción del audio
+		clip.stop();
+	}
 }

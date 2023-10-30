@@ -1,8 +1,13 @@
 package diseño;
 
 import java.awt.BorderLayout;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 import puzzlePokemon.PuzzleGame;
-import java.awt.FlowLayout;
+
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,19 +18,21 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
-import puzzlePokemon.PuzzleGame;
+
 import puzzlePokemon.PuzzleGrowlithe;
 import puzzlePokemon.PuzzleAbra;
 import puzzlePokemon.PuzzleHorsea;
 import puzzlePokemon.PuzzleJigglypuff;
 import puzzlePokemon.PuzzleScyther;
-import diseño.Inicio;
+
 
 public class EligePuzzle extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private Clip clip;
 
 	/**
 	 * Launch the application.
@@ -44,6 +51,9 @@ public class EligePuzzle extends JDialog {
 	 * Create the dialog.
 	 */
 	public EligePuzzle() {
+		// Llama al método para reproducir el audio
+	    reproducirAudio("C:\\Users\\danir\\Music\\Música de Pokemon Red & Blue - Laboratorio de Investigación Oak.wav");
+		
 		setTitle("Elige Puzzle");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Pictures\\Home.jpg"));
 		setBounds(100, 100, 319, 504);
@@ -65,7 +75,8 @@ public class EligePuzzle extends JDialog {
 			}
 
 			private void irAPuzzleGame() {
-				
+				// Detener la reproducción del audio
+		        clip.stop();
 				PuzzleGame puzzleGame = new PuzzleGame();
 			
 			}
@@ -81,6 +92,8 @@ public class EligePuzzle extends JDialog {
 			}
 
 			private void IrAPuzzleGrowlithe() {
+				// Detener la reproducción del audio
+		        clip.stop();
 				PuzzleGrowlithe puzzleGrowlithe = new PuzzleGrowlithe();
 				
 			}
@@ -96,6 +109,8 @@ public class EligePuzzle extends JDialog {
 			}
 
 			private void IrAPuzzleJigglypuff() {
+				// Detener la reproducción del audio
+		        clip.stop();
 				PuzzleJigglypuff puzzleJigglypuff = new PuzzleJigglypuff();
 				
 			}
@@ -111,6 +126,8 @@ public class EligePuzzle extends JDialog {
 			}
 
 			private void IrAPuzzleHorsea() {
+				// Detener la reproducción del audio
+		        clip.stop();
 				PuzzleHorsea puzzleHorsea = new PuzzleHorsea();
 				
 			}
@@ -152,11 +169,13 @@ public class EligePuzzle extends JDialog {
 			}
 
 			private void IrAInicio() {
-				
-					Inicio inicio = new Inicio();
-					inicio.setLocationRelativeTo(null);
-							inicio.setModal(true);
-							inicio.setVisible(true);
+				// Detener la reproducción del audio
+		        clip.stop();
+		        
+				Inicio inicio = new Inicio();
+				inicio.setLocationRelativeTo(null);
+						inicio.setModal(true);
+						inicio.setVisible(true);
 				
 			}
 		});
@@ -168,4 +187,25 @@ public class EligePuzzle extends JDialog {
 		lblNewLabel_1.setBounds(87, 171, 148, 14);
 		contentPanel.add(lblNewLabel_1);
 	}
+	//Método para reproducir audio
+			private void reproducirAudio(String rutaArchivoAudio) {
+			    try {
+			        // Obtén una instancia de Clip
+			        clip = AudioSystem.getClip();
+
+			        // Abre el archivo de audio
+			        clip.open(AudioSystem.getAudioInputStream(new File(rutaArchivoAudio)));
+
+			        // Reproduce el audio
+			        clip.start();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			    }
+			}
+
+			
+			public void windowClosing(WindowEvent e) {
+		        // Detener la reproducción del audio
+		        clip.stop();
+		    }
 }

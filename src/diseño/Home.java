@@ -51,7 +51,7 @@ public class Home extends JFrame {
 	 */
 	public Home() {
 	    setTitle("Pokemon Puzzle League");
-	    setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
+	    setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif"));
 
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 235, 488);
@@ -83,14 +83,14 @@ public class Home extends JFrame {
         });
 	    
 	    // Llama al método para reproducir el audio
-	    reproducirAudio("C:\\Users\\danir\\Music\\PokemonPinballOSTTitleScreen.wav");
+	    reproducirAudio("./src/recursos/PokemonPinballOSTTitleScreen.wav");
 	
 
 	    contentPane.setLayout(null);
 	    contentPane.add(btnRegistro);
 
 	    JLabel lblLogo = new JLabel("");
-	    lblLogo.setIcon(new ImageIcon("C:\\Users\\danir\\Downloads\\Home.jfif"));
+	    lblLogo.setIcon(new ImageIcon("./src/recursos/Home.jfif"));
 	    lblLogo.setHorizontalAlignment(SwingConstants.LEFT);
 	    lblLogo.setBounds(0, 0, 225, 225);
 	    contentPane.add(lblLogo);

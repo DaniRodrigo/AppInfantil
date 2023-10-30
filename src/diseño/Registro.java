@@ -47,9 +47,9 @@ public class Registro extends JDialog {
 	 */
 	public Registro() {
 		// Llama al método para reproducir el audio
-		reproducirAudio("C:\\Users\\danir\\Music\\Música de Pokemon Red & Blue - El Camino a Ciudad Verde.wav");
+		reproducirAudio("./src/recursos/Música de Pokemon Red & Blue - El Camino a Ciudad Verde.wav");
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif"));
 		setTitle("Registro");
 		setBounds(100, 100, 547, 443);
 		getContentPane().setLayout(new BorderLayout());
@@ -127,7 +127,7 @@ public class Registro extends JDialog {
 		{
 			JLabel lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(
-					new ImageIcon("C:\\Users\\danir\\Pictures\\DreamHackDallas2023_Freeplay_PokemonPuzzleLeague.png"));
+					new ImageIcon("./src/recursos/DreamHackDallas2023_Freeplay_PokemonPuzzleLeague.png"));
 			lblNewLabel_1.setBounds(0, 0, 531, 253);
 			contentPanel.add(lblNewLabel_1);
 		}
@@ -157,13 +157,13 @@ public class Registro extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("");
-			lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Squirtle2.png"));
+			lblNewLabel_2.setIcon(new ImageIcon("./src/recursos/Squirtle2.png"));
 			lblNewLabel_2.setBounds(406, 204, 125, 200);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("");
-			lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Bulbasaur2.png"));
+			lblNewLabel_3.setIcon(new ImageIcon("./src/recursos/Bulbasaur2.png"));
 			lblNewLabel_3.setBounds(-17, 231, 182, 173);
 			contentPanel.add(lblNewLabel_3);
 		}

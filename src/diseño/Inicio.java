@@ -46,10 +46,10 @@ public class Inicio extends JDialog {
 	 */
 	public Inicio() {
 		// Llama al método para reproducir el audio
-	    reproducirAudio("C:\\Users\\danir\\Music\\Música de Pokemon Red & Blue - Camino a la Casa de Bill.wav");
+	    reproducirAudio("./src/recursos/Música de Pokemon Red & Blue - Camino a la Casa de Bill.wav");
 	    
 		setTitle("Inicio");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif"));
 		setBounds(100, 100, 285, 585);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,7 +57,7 @@ public class Inicio extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\PokeLogo.png"));
+		lblNewLabel.setIcon(new ImageIcon("./src/recursos/PokeLogo.png"));
 		lblNewLabel.setBounds(17, -16, 252, 203);
 		contentPanel.add(lblNewLabel);
 		
@@ -83,7 +83,7 @@ public class Inicio extends JDialog {
 		contentPanel.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\pokes.jpg"));
+		lblNewLabel_1.setIcon(new ImageIcon("./src/recursos/pokes.jpg"));
 		lblNewLabel_1.setBounds(23, 182, 182, 87);
 		contentPanel.add(lblNewLabel_1);
 		
@@ -109,7 +109,7 @@ public class Inicio extends JDialog {
 		contentPanel.add(btnRecords);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("");
-		lblNewLabel_1_1.setIcon(new ImageIcon("C:\\Users\\danir\\Downloads\\14721e3a-3653-4fd7-80ac-047ba0e829fb_1190x500.jpg"));
+		lblNewLabel_1_1.setIcon(new ImageIcon("./src/recursos/14721e3a-3653-4fd7-80ac-047ba0e829fb_1190x500.jpg"));
 		lblNewLabel_1_1.setBounds(23, 342, 182, 87);
 		contentPanel.add(lblNewLabel_1_1);
 		
@@ -133,12 +133,12 @@ public class Inicio extends JDialog {
 		contentPanel.add(btnSalir);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Charmander2.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("./src/recursos/Charmander2.png"));
 		lblNewLabel_2.setBounds(194, 367, 174, 180);
 		contentPanel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("");
-		lblNewLabel_2_1.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Eevee2.png"));
+		lblNewLabel_2_1.setIcon(new ImageIcon("./src/recursos/Eevee2.png"));
 		lblNewLabel_2_1.setBounds(194, 155, 174, 191);
 		contentPanel.add(lblNewLabel_2_1);
 	}

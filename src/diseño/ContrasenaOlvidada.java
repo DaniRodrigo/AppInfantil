@@ -46,10 +46,10 @@ public class ContrasenaOlvidada extends JDialog {
 	 */
 	public ContrasenaOlvidada() {
 		// Llama al método para reproducir el audio
-		reproducirAudio("C:\\Users\\danir\\Music\\Pokemon-Pinball-OST-Game-Over.wav");
+		reproducirAudio("./src/recursos/Pokemon-Pinball-OST-Game-Over.wav");
 
 		setTitle("Contraseña olvidada");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif"));
 		setBounds(100, 100, 268, 423);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,7 +57,7 @@ public class ContrasenaOlvidada extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\PokeLogo.png"));
+			lblNewLabel.setIcon(new ImageIcon("./src/recursos/PokeLogo.png"));
 			lblNewLabel.setBounds(10, 11, 230, 154);
 			contentPanel.add(lblNewLabel);
 		}
@@ -107,7 +107,7 @@ public class ContrasenaOlvidada extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("");
-			lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Jigglypuff2.png"));
+			lblNewLabel_2.setIcon(new ImageIcon("./src/recursos/Jigglypuff2.png"));
 			lblNewLabel_2.setBounds(0, 246, 158, 138);
 			contentPanel.add(lblNewLabel_2);
 		}

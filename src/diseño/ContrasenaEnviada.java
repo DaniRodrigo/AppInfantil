@@ -33,7 +33,7 @@ public class ContrasenaEnviada extends JDialog {
 	 */
 	public ContrasenaEnviada() {
 		setTitle("Contraseña enviada");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif"));
 		setBounds(100, 100, 252, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -41,7 +41,7 @@ public class ContrasenaEnviada extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\PokeLogo.png"));
+			lblNewLabel.setIcon(new ImageIcon("./src/recursos/PokeLogo.png"));
 			lblNewLabel.setBounds(0, 0, 250, 160);
 			contentPanel.add(lblNewLabel);
 		}

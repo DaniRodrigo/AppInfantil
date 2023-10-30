@@ -1,10 +1,13 @@
 package puzzlePokemon;
 
 import javax.swing.*;
+import diseño.EligePuzzle;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+
+import javax.swing.JButton;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,13 +41,13 @@ public class PuzzleGame {
 
 	public PuzzleGame() {
 		// Llama al método para reproducir el audio
-		reproducirAudioEnBucle("C:\\Users\\danir\\Music\\Pokemon Pinball OST  Red Field.wav");
+		reproducirAudioEnBucle("./src/recursos/Pokemon Pinball OST  Red Field.wav");
 
 		frame = new JFrame("Puzzle Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		try {
-			originalImage = ImageIO.read(new File("C:\\Users\\danir\\Pictures\\Pikachu.jpg"));
+			originalImage = ImageIO.read(new File("./src/recursos/PikachuPuzzle.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,8 +83,18 @@ public class PuzzleGame {
 		// Agregar un JLabel para mostrar el tiempo transcurrido
 		timeLabel = new JLabel("Tiempo: 0 segundos");
 		guidePanel.add(timeLabel);
+		
+		// Crear el botón "Volver" y agregarlo a la ventana
+        JButton backButton = new JButton("Volver a Elegir");
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                regresarAEligePuzzle();
+            }
+        });
+        
+        guidePanel.add(backButton);
 
-		Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif");
+		Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif");
 		frame.setIconImage(icon);
 
 		frame.pack();
@@ -180,4 +193,15 @@ public class PuzzleGame {
 		// Detener la reproducción del audio
 		clip.stop();
 	}
+	// Agregar el método para regresar a EligePuzzle
+    private void regresarAEligePuzzle() {
+        frame.dispose(); // Cierra la ventana actual
+      //Parar audio
+        clip.stop();
+		
+		EligePuzzle eligePuzzle = new EligePuzzle();
+		eligePuzzle.setLocationRelativeTo(null);
+		
+		eligePuzzle.setVisible(true);	
+    }
 }

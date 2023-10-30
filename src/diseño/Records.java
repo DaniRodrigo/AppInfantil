@@ -59,7 +59,7 @@ public class Records extends JDialog {
 	 */
 	public Records() {
 		// Llama al método para reproducir el audio
-		reproducirAudio("C:\\Users\\danir\\Music\\Pokemon Pinball OST  Pokedex.wav");
+		reproducirAudio("./src/recursos/Pokedex.wav");
 
 		// Inicialización del controlador
 		controller = new RecordsController();
@@ -70,7 +70,7 @@ public class Records extends JDialog {
 				// Realizar acciones cuando la ventana se activa
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif"));
 		setTitle("Records");
 		setBounds(100, 100, 635, 464);
 		getContentPane().setLayout(new BorderLayout());
@@ -82,7 +82,7 @@ public class Records extends JDialog {
 		{
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setIcon(
-					new ImageIcon("C:\\Users\\danir\\Downloads\\14721e3a-3653-4fd7-80ac-047ba0e829fb_1190x500.jpg"));
+					new ImageIcon("./src/recursos/14721e3a-3653-4fd7-80ac-047ba0e829fb_1190x500.jpg"));
 			lblNewLabel.setBounds(208, -32, 204, 122);
 			contentPanel.add(lblNewLabel);
 		}

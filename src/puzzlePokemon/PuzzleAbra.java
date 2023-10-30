@@ -2,6 +2,8 @@ package puzzlePokemon;
 
 import javax.swing.*;
 
+import diseño.EligePuzzle;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,13 +38,13 @@ public class PuzzleAbra {
 
 	public PuzzleAbra() {
 		// Llama al método para reproducir el audio
-		reproducirAudioEnBucle("C:\\Users\\danir\\Music\\Pokemon Pinball OST  Blue Field.wav");
+		reproducirAudioEnBucle("./src/recursos/Pokemon Pinball OST  Blue Field.wav");
 
 		frame = new JFrame("Puzzle Game"); // Crear la ventana
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar acción de cierre
 
 		try {
-			originalImage = ImageIO.read(new File("C:\\Users\\danir\\Pictures\\Iconos\\AbraPuzzle.jpg"));
+			originalImage = ImageIO.read(new File("./src/recursos/AbraPuzzle.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,12 +81,22 @@ public class PuzzleAbra {
 		timeLabel = new JLabel("Tiempo: 0 segundos");
 		guidePanel.add(timeLabel);
 
-		Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Downloads\\Home.jfif");
+		Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jfif");
 		frame.setIconImage(icon);
 
 		frame.pack(); // Ajustar el tamaño de la ventana
 		frame.setPreferredSize(new Dimension(400, 400)); // Establecer el tamaño preferido
 		frame.setVisible(true); // Hacer visible la ventana
+		
+		// Crear el botón "Volver" y agregarlo a la ventana
+        JButton backButton = new JButton("Volver a Elegir");
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                regresarAEligePuzzle();
+            }
+        });
+        
+        guidePanel.add(backButton);
 
 		// Configura un Timer para actualizar el tiempo cada segundo
 		timer = new Timer(1000, new ActionListener() {
@@ -178,4 +190,15 @@ public class PuzzleAbra {
 		// Detener la reproducción del audio
 		clip.stop();
 	}
+	// Agregar el método para regresar a EligePuzzle
+    private void regresarAEligePuzzle() {
+        frame.dispose(); // Cierra la ventana actual
+      //Parar audio
+        clip.stop();
+		
+		EligePuzzle eligePuzzle = new EligePuzzle();
+		eligePuzzle.setLocationRelativeTo(null);
+		
+		eligePuzzle.setVisible(true);	
+    }
 }

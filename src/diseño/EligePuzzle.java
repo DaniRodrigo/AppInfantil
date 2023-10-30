@@ -52,10 +52,10 @@ public class EligePuzzle extends JDialog {
 	 */
 	public EligePuzzle() {
 		// Llama al método para reproducir el audio
-	    reproducirAudio("C:\\Users\\danir\\Music\\Música de Pokemon Red & Blue - Laboratorio de Investigación Oak.wav");
+	    reproducirAudio("./src/recursos/Evolution.wav");
 		
 		setTitle("Elige Puzzle");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danir\\Pictures\\Home.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./src/recursos/Home.jpg"));
 		setBounds(100, 100, 319, 504);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +63,7 @@ public class EligePuzzle extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\PokeLogo.png"));
+		lblNewLabel.setIcon(new ImageIcon("./src/recursos/PokeLogo.png"));
 		lblNewLabel.setBounds(34, -11, 216, 174);
 		contentPanel.add(lblNewLabel);
 		
@@ -77,11 +77,12 @@ public class EligePuzzle extends JDialog {
 			private void irAPuzzleGame() {
 				// Detener la reproducción del audio
 		        clip.stop();
+		        dispose();
 				PuzzleGame puzzleGame = new PuzzleGame();
 			
 			}
 		});
-		btnPikachu.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Iconos\\Pikachu.jpg"));
+		btnPikachu.setIcon(new ImageIcon("./src/recursos/Pikachu.jpg"));
 		btnPikachu.setBounds(56, 209, 59, 59);
 		contentPanel.add(btnPikachu);
 		
@@ -94,11 +95,12 @@ public class EligePuzzle extends JDialog {
 			private void IrAPuzzleGrowlithe() {
 				// Detener la reproducción del audio
 		        clip.stop();
+		        dispose();
 				PuzzleGrowlithe puzzleGrowlithe = new PuzzleGrowlithe();
 				
 			}
 		});
-		btnGrowlithe.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Iconos\\Growlithe.jpg"));
+		btnGrowlithe.setIcon(new ImageIcon("./src/recursos/Growlithe.jpg"));
 		btnGrowlithe.setBounds(191, 209, 59, 59);
 		contentPanel.add(btnGrowlithe);
 		
@@ -111,11 +113,12 @@ public class EligePuzzle extends JDialog {
 			private void IrAPuzzleJigglypuff() {
 				// Detener la reproducción del audio
 		        clip.stop();
+		        dispose();
 				PuzzleJigglypuff puzzleJigglypuff = new PuzzleJigglypuff();
 				
 			}
 		});
-		btnJigglypuff.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Iconos\\Jigglypuff.jpg"));
+		btnJigglypuff.setIcon(new ImageIcon("./src/recursos/Jigglypuff.jpg"));
 		btnJigglypuff.setBounds(56, 279, 59, 59);
 		contentPanel.add(btnJigglypuff);
 		
@@ -128,11 +131,12 @@ public class EligePuzzle extends JDialog {
 			private void IrAPuzzleHorsea() {
 				// Detener la reproducción del audio
 		        clip.stop();
+		        dispose();
 				PuzzleHorsea puzzleHorsea = new PuzzleHorsea();
 				
 			}
 		});
-		btnHorsea.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Iconos\\Horsea.jpg"));
+		btnHorsea.setIcon(new ImageIcon("./src/recursos/Horsea.jpg"));
 		btnHorsea.setBounds(191, 279, 59, 59);
 		contentPanel.add(btnHorsea);
 		
@@ -143,21 +147,31 @@ public class EligePuzzle extends JDialog {
 			}
 
 			private void IrAPuzzleAbra() {
+				// Detener la reproducción del audio
+		        clip.stop();
+		        dispose();
 				PuzzleAbra puzzleAbra = new PuzzleAbra();
 				
 			}
 		});
-		btnAbra.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Iconos\\Abra.jpg"));
+		btnAbra.setIcon(new ImageIcon("./src/recursos/Abra.jpg"));
 		btnAbra.setBounds(56, 349, 59, 59);
 		contentPanel.add(btnAbra);
 		
 		JButton btnScyther = new JButton("");
 		btnScyther.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				IrAPuzzleScyther();
+					
+				}
+				private void IrAPuzzleScyther() {
+					// Detener la reproducción del audio
+			    clip.stop();
+			    dispose();
 				PuzzleScyther puzzleScyther = new PuzzleScyther();
 			}
 		});
-		btnScyther.setIcon(new ImageIcon("C:\\Users\\danir\\Pictures\\Iconos\\Scyther.jpg"));
+		btnScyther.setIcon(new ImageIcon("./src/recursos/Scyther.jpg"));
 		btnScyther.setBounds(191, 349, 59, 59);
 		contentPanel.add(btnScyther);
 		
